@@ -1,0 +1,9 @@
+sample_rate: 16000
+model: dns64
+device: cpu
+dry: 0.01
+num_frames: 1
+num_threads: 4
+input_channels: 1
+input_sample_rate: 8000
+output_sample_rate: 8000

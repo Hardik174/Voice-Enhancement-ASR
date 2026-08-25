@@ -1,0 +1,16 @@
+sample_rate: 16000
+snr_db_range: [-5, 20]
+codecs: [none, gsm_fr]
+packet_loss:
+  rates: [0.0, 0.03, 0.08, 0.15]
+  frame_ms: 20
+noise_dirs:
+  - data/noise/market
+  - data/noise/traffic
+  - data/noise/crowd
+  - data/noise/dns_challenge_supplement
+clean_dirs:
+  - data/raw/indicvoices
+  - data/raw/vb_clean_calls
+  - data/raw/common_voice_indic
+output_manifest: data/augmented/manifest.jsonl

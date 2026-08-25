@@ -1,0 +1,74 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments & Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+pyvenv.cfg
+
+# IDE / Editor configuration
+.vscode/
+.idea/
+*.swp
+*.swo
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Project-specific data & artifact paths (exclude large files, keep directories via .gitkeep)
+
+# Data directories
+data/augmented/*
+!data/augmented/.gitkeep
+data/noise/*
+!data/noise/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+data/rirs/*
+!data/rirs/.gitkeep
+
+# Telephony call recordings & transcripts
+calls/raw/*
+!calls/raw/.gitkeep
+calls/enhanced/*
+!calls/enhanced/.gitkeep
+calls/held_out/*
+!calls/held_out/.gitkeep
+calls/asr/*
+!calls/asr/.gitkeep
+
+# Model checkpoints & weights
+models/checkpoints/*
+!models/checkpoints/.gitkeep
+models/*.pt
+models/*.pth
+models/*.th
+models/*.ckpt
+
+# Evaluation reports
+reports/*
+!reports/.gitkeep
+
+# General test / cache / output directories
+.cache/
+.pytest_cache/
+.ipynb_checkpoints/
+.mypy_cache/
+outputs/
+*.egg-info/
+.eggs/
+build/
+dist/
+*.log

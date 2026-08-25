@@ -1,0 +1,11 @@
+# Training knobs for the upstream facebookresearch/denoiser trainer.
+# The actual training entrypoint is upstream denoiser/train.py.
+continue_pretrained: dns64
+epochs: 40
+batch_size: 16
+lr: 3.0e-5
+loss: l1
+stft_loss: true
+stft_sc_factor: 0.5
+stft_mag_factor: 0.5
+streaming: false

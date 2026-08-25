@@ -1,0 +1,15 @@
+# ASR (text-generation) stage config.
+# Model: ARTPARK-IISc/SraVaani-1.0 (FastConformer, hybrid TDT-CTC decoder, 65 Indian
+# languages/dialects). See src/asr/transcribe.py module docstring for the gated-access,
+# trust_remote_code, and streaming caveats before using this in production.
+
+repo_id: ARTPARK-IISc/SraVaani-1.0
+device: null              # null = auto (cuda if available, else cpu)
+hf_token_env: HF_TOKEN     # env var read for the HF access token; model is gated
+
+# Languages you have actually validated WER for -- fill this in as you run the WER-delta
+# eval per language (Section 9.3 of the plan / model card's per-language table). Do not assume
+# the aggregate model-card numbers transfer to your call audio without checking.
+validated_languages: []
+
+audio_extensions: [".wav", ".mp3", ".flac"]
