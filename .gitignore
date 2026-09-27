@@ -72,3 +72,17 @@ outputs/
 build/
 dist/
 *.log
+
+# Secrets / credentials (never commit tokens)
+.env
+.env.*
+*.pem
+*.key
+
+# Safety net: never commit audio or transcripts anywhere in the repo
+*.wav
+*.mp3
+*.flac
+*.m4a
+*.ogg
+*.jsonl

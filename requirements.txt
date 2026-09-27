@@ -12,3 +12,9 @@ sentencepiece>=0.1.97
 psutil>=5.9
 # Install the archived upstream speech-enhancement package:
 # pip install denoiser
+
+# Vocoder & Super-resolution stage (Resemble Enhance):
+# Note: The official 'resemble-enhance' package defines 'deepspeed' as a hard dependency,
+# which is difficult to build on Windows/macOS. For inference-only environments, you can
+# install a patched version without deepspeed (as done in this setup).
+# resemble-enhance

@@ -44,6 +44,8 @@ def load_audio(path: str | Path, target_sr: int = TARGET_SR) -> torch.Tensor:
 
 def save_audio(path: str | Path, wav: torch.Tensor, sr: int = TARGET_SR) -> None:
     path = Path(path)
+    if path.suffix.lower() not in (".wav", ".flac"):
+        path = path.with_suffix(".wav")
     path.parent.mkdir(parents=True, exist_ok=True)
     wav = wav.detach().float().cpu().reshape(-1).clamp(-1, 1)
     sf.write(str(path), wav.numpy(), sr, subtype="PCM_16")

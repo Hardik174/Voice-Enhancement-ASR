@@ -151,6 +151,7 @@ def transcribe_dir_to_jsonl(
     out_jsonl: str,
     config: Optional[AsrConfig] = None,
     extensions: Iterable[str] = AUDIO_EXTENSIONS,
+    prefix_to_strip: Optional[str] = None,
 ) -> None:
     """Transcribe every audio file in audio_dir, writing {id,text} JSONL -- the exact schema
     src/eval/compute_wer_delta.py expects for --raw-transcripts / --enhanced-transcripts.
@@ -170,7 +171,10 @@ def transcribe_dir_to_jsonl(
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         for p, text in zip(files, texts):
-            f.write(json.dumps({"id": p.stem, "text": text}, ensure_ascii=False) + "\n")
+            stem = p.stem
+            if prefix_to_strip and stem.startswith(prefix_to_strip):
+                stem = stem[len(prefix_to_strip):]
+            f.write(json.dumps({"id": stem, "text": text}, ensure_ascii=False) + "\n")
 
 
 def transcribe_single_file(

@@ -27,3 +27,11 @@ voice-pipeline = "src.asr.pipeline:main"
 
 [tool.setuptools.packages.find]
 include = ["src*"]
+
+[tool.pyright]
+executionEnvironments = [
+  { root = "." }
+]
+venvPath = "."
+venv = ".venv"
+

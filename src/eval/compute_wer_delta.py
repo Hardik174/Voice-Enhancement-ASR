@@ -29,7 +29,7 @@ def main():
     p.add_argument("--enhanced-transcripts", required=True, help="JSONL: {id,text}")
     p.add_argument("--references", required=True, help="JSONL: {id,text}")
     args=p.parse_args()
-    def read(x): return {r["id"]:r["text"] for r in map(json.loads,Path(x).read_text().splitlines())}
+    def read(x): return {r["id"]:r["text"] for r in map(json.loads,Path(x).read_text(encoding="utf-8").splitlines())}
     raw,enh,ref=read(args.raw_transcripts),read(args.enhanced_transcripts),read(args.references)
     raw_w=[]; enh_w=[]; refs=[]; raw_hyps=[]; enh_hyps=[]
     for k,r in ref.items():

@@ -47,3 +47,23 @@ def test_transcribe_dir_to_jsonl_no_audio_files_raises(tmp_path):
     empty_dir.mkdir()
     with pytest.raises(SystemExit):
         transcribe_dir_to_jsonl(str(empty_dir), str(tmp_path / "out.jsonl"))
+
+
+def test_transcribe_dir_to_jsonl_strips_prefix(tmp_path, monkeypatch):
+    audio_dir = tmp_path / "audio"
+    audio_dir.mkdir()
+    (audio_dir / "new_call_001.wav").write_bytes(b"fake wav bytes")
+    (audio_dir / "new_call_002.wav").write_bytes(b"fake wav bytes")
+
+    def fake_transcribe_files(self, paths):
+        return [f"stub transcript for {Path(p).name}" for p in paths]
+
+    monkeypatch.setattr(SraVaaniASR, "transcribe_files", fake_transcribe_files)
+
+    out_jsonl = tmp_path / "out.jsonl"
+    transcribe_dir_to_jsonl(str(audio_dir), str(out_jsonl), prefix_to_strip="new_")
+
+    lines = [json.loads(l) for l in out_jsonl.read_text().splitlines()]
+    ids = {r["id"] for r in lines}
+    assert ids == {"call_001", "call_002"}
+
